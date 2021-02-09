@@ -29,6 +29,6 @@ Growtopia enet proxy that allows modification and viewing of packets, and creati
 * Pull/kick/ban all
 * and more features
 ## Credits
-ama6nen
-wry // thanks for helps
-wh1ter0se //thanks for helps
+* ama6nen
+* wry // thanks for helps
+* wh1ter0se //thanks for helps
