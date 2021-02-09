@@ -7,13 +7,13 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "winres.h"
+#include "winres.h"//lol bruh
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Türkçe (Türkiye) resources
+// TÃ¼rkÃ§e (TÃ¼rkiye) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_TRK)
 LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
@@ -53,7 +53,7 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-#endif    // Türkçe (Türkiye) resources
+#endif    // TÃ¼rkÃ§e (TÃ¼rkiye) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
