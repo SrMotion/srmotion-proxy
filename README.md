@@ -30,3 +30,5 @@ Growtopia enet proxy that allows modification and viewing of packets, and creati
 * and more features
 ## Credits
 ama6nen
+wry // thanks for helps
+wh1ter0se //thanks for helps
