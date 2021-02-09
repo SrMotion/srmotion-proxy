@@ -3,6 +3,8 @@ Growtopia enet proxy that allows modification and viewing of packets, and creati
 ## How to use
 * Does not need separate http server
 
+* Build with Release x64
+
 * Start proxy -> auto patch hosts -> Works as supposed
 
 ## Features
