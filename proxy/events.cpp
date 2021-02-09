@@ -1577,15 +1577,6 @@ bool events::in::variantlist(gameupdatepacket_t* packet) {
                 ply.mod = true;
                 ply.invis = true;
             }
-            if (var.get("mstate") == "1" || var.get("smstate") == "1" || var.get("invis") == "1")
-            {
-                gt::send_log("An Moderator Entered the world. 2/2");
-                if (worldbanjoinmod == true)
-                {
-                    gt::send_log("`$Leaving the world due to having Mod bypass on and due to having a `#mod `$in the world!");
-                    g_server->send(false, "action|input\n|text|/unaccess");
-                }
-            }
             if (var.get("mstate") == "1" || var.get("smstate") == "1")
                 ply.mod = true;
             ply.userid = var.get_int("userID");
