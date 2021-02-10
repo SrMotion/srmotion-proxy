@@ -15,8 +15,8 @@ enum SpacerTypes
 
 enum CheckboxTypes
 {
-	CHECKBOX_SELECTED,
-	CHECKBOX_NOT_SELECTED
+        CHECKBOX_NOT_SELECTED,	
+        CHECKBOX_SELECTED
 };
 class Dialog
 {
