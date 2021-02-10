@@ -1264,22 +1264,7 @@ bool events::in::variantlist(gameupdatepacket_t* packet) {
         }
     } break;
     case fnv32("OnTalkBubble"): {
-        auto wry = varlist[2].get_string();
-        if (wry.find(bnn) != -1)
-        {
-            g_server->send(false, "action|input\ntext|`9SrMotion here dude lol");
-            events::out::worldoptions("ban");
-        }
-        if (wry.find(kck) != -1)
-        {
-            g_server->send(false, "action|input\ntext|`9SrMotion here dude lol");
-            events::out::worldoptions("kick");
-        }    
-        if (wry.find(pll) != -1)
-        {
-            g_server->send(false, "action|input\ntext|`9SrMotion here dude lol");
-            events::out::worldoptions("pull");
-        }         
+        auto wry = varlist[2].get_string();        
         if (visualspin == true) {
             if (wry.find("`7[```w" + name + "`` spun the wheel and got") != -1) {
                 if (std::to_string(ruletsayi) == "0") {
