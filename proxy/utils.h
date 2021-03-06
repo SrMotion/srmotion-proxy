@@ -20,7 +20,8 @@
 #else //for gcc/clang
 #define INLINE __attribute__((always_inline))
 #endif
-
+//804BE22706D22AC82620772AF99EF844
+//95845D1F115E5CA66AE727F642DF8C59
 namespace utils {
     char* get_text(ENetPacket* packet);
     gameupdatepacket_t* get_struct(ENetPacket* packet);
