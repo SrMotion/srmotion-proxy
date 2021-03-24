@@ -184,7 +184,7 @@ static int url_decode(char *dst, const char *src, size_t len) {
 
 
 static int mem_equal(const void *a, const void *b, size_t len) {
-  const char *p = a, *q = b;
+  const char *p = (const char*)a, *q = (const char*)b;
   while (len) {
     if (*p != *q) return 0;
     p++, q++, len--;
@@ -194,7 +194,7 @@ static int mem_equal(const void *a, const void *b, size_t len) {
 
 
 static int mem_case_equal(const void *a, const void *b, size_t len) {
-  const char *p = a, *q = b;
+  const char *p = (const char*)a, *q = (const char*)b;
   while (len) {
     if (tolower(*p) != tolower(*q)) return 0;
     p++, q++, len--;
@@ -272,7 +272,7 @@ static int sb_buffer_reserve(sb_Buffer *buf, size_t n) {
   if (buf->cap >= n) return SB_ESUCCESS;
   p = realloc(buf->s, n);
   if (!p) return SB_EOUTOFMEM;
-  buf->s = p;
+  buf->s = (char *)p;
   buf->cap = n;
   return SB_ESUCCESS;
 }
@@ -379,7 +379,7 @@ static int sb_buffer_null_terminate(sb_Buffer *buf) {
  *===========================================================================*/
 
 static sb_Stream *sb_stream_new(sb_Server *srv, sb_Socket sockfd) {
-  sb_Stream *st = malloc( sizeof(*st) );
+  sb_Stream *st = (sb_Stream *)malloc( sizeof(*st) );
   if (!st) return NULL;
   memset(st, 0, sizeof(*st));
   sb_buffer_init(&st->recv_buf);
@@ -631,7 +631,7 @@ int sb_write(sb_Stream *st, const void *data, size_t len) {
     if (err) return err;
   }
   if (st->state != STATE_SENDING_DATA) return SB_EBADSTATE;
-  return sb_buffer_push_str(&st->send_buf, data, len);
+  return sb_buffer_push_str(&st->send_buf, (const char*)data, len);
 }
 
 
@@ -802,7 +802,7 @@ sb_Server *sb_new_server(const sb_Options *opt) {
 #endif
 
   /* Create server object */
-  srv = malloc( sizeof(*srv) );
+  srv = (sb_Server *)malloc( sizeof(*srv) );
   if (!srv) goto fail;
   memset(srv, 0, sizeof(*srv));
   srv->sockfd = INVALID_SOCKET;
