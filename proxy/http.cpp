@@ -1,7 +1,11 @@
-#pragma once
+
 #include "http.h"
 #include "print.h"
+#include <cstring>
 
+#ifndef _WIN32
+#define fopen_s(pFile,filename,mode) ((*(pFile))=fopen((filename),  (mode)))==NULL
+#endif
 sb_Options options;
 sb_Server* http_server;
 
