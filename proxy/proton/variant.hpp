@@ -1,6 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <sstream>
+#include <cstring>
 #include <string>
 #include "vector.hpp"
 
