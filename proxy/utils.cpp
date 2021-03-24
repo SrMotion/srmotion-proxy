@@ -1,4 +1,3 @@
-#pragma once
 #include "utils.h"
 #include <algorithm>
 #include <chrono>
@@ -40,7 +39,7 @@ std::string utils::generate_rid() {
     for (int i = 0; i < 16; i++)
         rid_str += utils::hex_str(utils::random(0, 255));
 
-    std::transform(rid_str.begin(), rid_str.end(), rid_str.begin(), std::toupper);
+    std::transform(rid_str.begin(), rid_str.end(), rid_str.begin(), ::toupper);
 
     return rid_str;
 }
