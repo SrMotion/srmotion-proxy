@@ -53,7 +53,7 @@ uint8_t* read_file(const char* file, uint32_t* size) {
 	return NULL;
 }
 
-#define PRINT(msg, ...) printf("[HTTP]: " msg, __VA_ARGS__);
+#define PRINT(msg, ...) printf("[HTTP]: " msg, ##__VA_ARGS__);
 
 int http::handler(sb_Event* evt)
 {
