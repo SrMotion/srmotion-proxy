@@ -305,8 +305,8 @@ void server::disconnect(bool reset) {
     if (reset) {
         m_user = 0;
         m_token = 0;
-        m_server = "213.179.209.168";
-        m_port = 17198;
+        m_server = serverz;
+        m_port = portz;
     }
 }
 void server::disconnectsr(bool reset) {
@@ -322,8 +322,8 @@ void server::disconnectsr(bool reset) {
     if (reset) {
         m_user = 0;
         m_token = 0;
-        m_server = "213.179.209.168";
-        m_port = 17201;
+        m_server = serverz;
+        m_port = portz;
     }
 }
 bool server::connect() {
