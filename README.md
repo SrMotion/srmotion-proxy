@@ -30,6 +30,7 @@ Growtopia enet proxy that allows modification and viewing of packets, and creati
 * World Lock Troll
 * Pull/kick/ban all
 * and more features
+* Added auto parse server_data.php
 ## Credits
 * ama6nen
 * wry // thanks for helps
