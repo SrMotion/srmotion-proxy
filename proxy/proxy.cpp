@@ -11,6 +11,9 @@
 #include <conio.h>
 #include <fstream>
 #include "events.h"
+#include "lw_http.hpp"
+#include "utils.h"
+#include <regex>
 server* g_server = new server();
 using namespace std;
 BOOL WINAPI HandlerRoutine(DWORD dwCtrlType)
@@ -31,10 +34,50 @@ BOOL WINAPI HandlerRoutine(DWORD dwCtrlType)
     }
     return FALSE;
 }
-
+vector<string> split(const string& str, const string& delim)
+{
+    vector<string> tokens;
+    size_t prev = 0, pos = 0;
+    do
+    {
+        pos = str.find(delim, prev);
+        if (pos == string::npos) pos = str.length();
+        string token = str.substr(prev, pos - prev);
+        if (!token.empty()) tokens.push_back(token);
+        prev = pos + delim.length();
+    } while (pos < str.length() && prev < str.length());
+    return tokens;
+}
 int main() {
+    SetConsoleTitleA("SrMotion Proxy ;)");
+    try
+    {
+        std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
 
+        if (dosyaYaz.is_open()) {
+            dosyaYaz << "";
+            dosyaYaz.close();
+        }
+    }
+    catch (std::exception)
+    {
+    }
+    printf("Parsing the server_data.php\n");
     SetConsoleCtrlHandler(HandlerRoutine, true);
+    c_lw_http lw_http;
+    c_lw_httpd lw_http_d;
+    if (!lw_http.open_session()) {
+        return true;
+    }
+    std::string s_reply;
+    const auto b_lw_http = lw_http.get(L"http://growtopia2.com/growtopia/server_data.php", s_reply);
+    string delimiter = "|";
+    vector<string> v = split(s_reply.c_str(), delimiter);
+    g_server->m_port = std::stoi(v[2]);
+    std::string string(v[1].c_str());
+    string = std::regex_replace(string, std::regex("\nport"), "");
+    cout << "Parsing port and ip is done. port is " << to_string(g_server->m_port).c_str() << " and ip is " << string.c_str() << endl;
+    g_server->m_server = string.c_str();
     try
     {
         std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
@@ -47,7 +90,6 @@ int main() {
     catch (std::exception)
     {
     }
-    SetConsoleTitle("SrMotion Proxy ;)");
     system("Color a");
     printf("Based on enet by ama.\n");
     events::out::type2 = 2;
