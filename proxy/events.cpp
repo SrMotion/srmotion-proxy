@@ -1028,7 +1028,7 @@ bool events::out::generictext(std::string packet) {
                 "\nadd_button|banall|`4Ban All``|noflags|0|0|"
                 "\nadd_button|pullall|`5Pull All``|noflags|0|0|"
                 "\nadd_button|ubaworld|`5Unban World``|noflags|0|0|"
-                "\nadd_textbox|`4IMPORTANT: `oDiscord: SrMotion#0001.|left|2480|"
+                "\nadd_textbox|`4IMPORTANT: `oDiscord: SrMotion#0069.|left|2480|"
                 "\nadd_quick_exit|"
                 "\nend_dialog|end|Cancel|Okay|";
             variantlist_t liste{ "OnDialogRequest" };
