@@ -79,10 +79,12 @@ int main() {
     string delimiter = "|";
     vector<string> v = split(s_reply.c_str(), delimiter);
     g_server->m_port = std::stoi(v[2]);
+    g_server->portz = std::stoi(v[2]);
     std::string string(v[1].c_str());
     string = std::regex_replace(string, std::regex("\nport"), "");
     cout << "Parsing port and ip is done. port is " << to_string(g_server->m_port).c_str() << " and ip is " << string.c_str() << endl;
     g_server->m_server = string.c_str();
+    g_server->serverz = string.c_str();
     try
     {
         std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
