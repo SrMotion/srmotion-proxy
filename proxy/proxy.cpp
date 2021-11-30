@@ -49,6 +49,8 @@ vector<string> split(const string& str, const string& delim)
     return tokens;
 }
 int main() {
+    cout << "NOTE: NO MORE UPDATES TO SRMOTION PROXY, WE'RE WORKING ON FLEXFARM DO NOT FORGET JOIN OUR DISCORD(SrMotion#1337)" << endl;
+    system("start https://discord.gg/5aWdrDTXay");
     SetConsoleTitleA("SrMotion Proxy ;)");
     try
     {
@@ -69,8 +71,11 @@ int main() {
     if (!lw_http.open_session()) {
         return true;
     }
+    lw_http_d.add_field("version", 3);//client variables
+    lw_http_d.add_field("platform", 0);//pc platform
+    lw_http_d.add_field("protocol", 147);
     std::string s_reply;
-    const auto b_lw_http = lw_http.get(L"http://growtopia2.com/growtopia/server_data.php", s_reply);
+    const auto b_lw_http = lw_http.post(L"http://growtopia1.com/growtopia/server_data.php", s_reply, lw_http_d);
     string delimiter = "|";
     vector<string> v = split(s_reply.c_str(), delimiter);
     g_server->m_port = std::stoi(v[2]);
