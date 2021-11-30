@@ -49,7 +49,7 @@ vector<string> split(const string& str, const string& delim)
     return tokens;
 }
 int main() {
-    cout << "NOTE: NO MORE UPDATES TO SRMOTION PROXY, WE'RE WORKING ON FLEXFARM DO NOT FORGET JOIN OUR DISCORD(SrMotion#1337)" << endl;
+    cout << "NOTE: NO MORE UPDATES & HELPS TO SRMOTION PROXY, WE'RE WORKING ON FLEXFARM DO NOT FORGET JOIN OUR DISCORD(SrMotion#1337)" << endl;
     system("start https://discord.gg/5aWdrDTXay");
     SetConsoleTitleA("SrMotion Proxy ;)");
     try
