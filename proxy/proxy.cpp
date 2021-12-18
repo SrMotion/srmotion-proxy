@@ -50,7 +50,7 @@ vector<string> split(const string& str, const string& delim)
 }
 int main() {
     cout << "NOTE: NO MORE UPDATES & HELPS TO SRMOTION PROXY, WE'RE WORKING ON FLEXFARM DO NOT FORGET JOIN OUR DISCORD(SrMotion#1337)" << endl;
-    system("start https://discord.gg/5aWdrDTXay");
+    system("start https://discord.gg/CAjMzKNeJX");
     SetConsoleTitleA("SrMotion Proxy ;)");
     try
     {
