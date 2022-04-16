@@ -1091,7 +1091,7 @@ bool events::out::generictext(std::string packet) {
             var.set("zf", std::to_string(utils::random(INT_MIN, INT_MAX)));
             var.set("hash", std::to_string(utils::random(INT_MIN, INT_MAX)));
             var.set("hash2", std::to_string(hash2));
-            var.set("meta", utils::random(utils::random(6, 10)) + ".com");
+            var.set("meta", "defined");
             //var.set("game_version", gt::version); removed due version bypass got patched.
             var.set("country", gt::flag);
             var.set("player_age", "20");
