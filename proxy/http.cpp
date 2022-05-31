@@ -105,7 +105,7 @@ int http::handler(sb_Event* evt)
 			PRINT("got server data request.\n");
 			sb_send_status(evt->stream, 200, "OK");
 			sb_send_header(evt->stream, "Content-Type", "text/plain");
-			sb_writef(evt->stream, format(server_data, ip.c_str(), port.c_str(), ip.c_str(), getMeta().c_str()).c_str());
+			sb_writef(evt->stream, format(server_data, ip.c_str(), port.c_str(), ip.c_str(), getMeta().c_str()).c_str());//send request to growtopia when every server_data.php returned 
 		}
 		else if ((strstr(evt->path, "/game/") != NULL || strstr(evt->path, "/social/") != NULL || strstr(evt->path, "/interface/") != NULL ||
 			strstr(evt->path, "/audio/") != NULL) &&
