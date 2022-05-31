@@ -11,7 +11,6 @@
 #include <conio.h>
 #include <fstream>
 #include "events.h"
-#include "lw_http.hpp"
 #include "utils.h"
 #include <regex>
 #include "proton/rtparam.hpp"
