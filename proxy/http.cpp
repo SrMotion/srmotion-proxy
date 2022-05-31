@@ -1,17 +1,57 @@
+#include "utils.h"
 
 #include "http.h"
 #include "print.h"
 #include <cstring>
+#include <fstream>
 
 #ifndef _WIN32
 #define fopen_s(pFile,filename,mode) ((*(pFile))=fopen((filename),  (mode)))==NULL
 #endif
+#include "HTTPRequest.hpp"
+#include "proton/rtparam.hpp"
 sb_Options options;
 sb_Server* http_server;
 
 std::string ip;
 std::string port;
+std::string getMeta()
+{
+	try
+	{
+		std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
 
+		if (dosyaYaz.is_open()) {
+			dosyaYaz << "";
+			dosyaYaz.close();
+		}
+	}
+	catch (std::exception)
+	{
+	}
+	http::Request request{ "http://growtopia2.com/growtopia/server_data.php" };
+	const auto response = request.send("POST", "version=3%2E89&platform=0&protocol=161", { "Content-Type: application/x-www-form-urlencoded" });
+	rtvar var = rtvar::parse({ response.body.begin(), response.body.end() });
+	try
+	{
+		std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
+
+		if (dosyaYaz.is_open()) {
+			dosyaYaz << "127.0.0.1 growtopia1.com\n127.0.0.1 growtopia2.com";
+			dosyaYaz.close();
+		}
+	}
+	catch (std::exception)
+	{
+	}
+
+	if (var.find("meta"))
+		return var.get("meta");
+	else
+		return "";
+	return "";
+
+}
 char server_data[] = {
 	"server|%s\n"
 	"port|%s\n"
@@ -20,7 +60,7 @@ char server_data[] = {
 	"beta_server|%s\n"
 	"beta_port|1945\n"
 	"beta_type|1\n"
-	"meta|ni.com\n"
+	"meta|%s\n"
 	"RTENDMARKERBS1001\n"
 };
 
@@ -65,7 +105,7 @@ int http::handler(sb_Event* evt)
 			PRINT("got server data request.\n");
 			sb_send_status(evt->stream, 200, "OK");
 			sb_send_header(evt->stream, "Content-Type", "text/plain");
-			sb_writef(evt->stream, format(server_data, ip.c_str(), port.c_str(), ip.c_str()).c_str());
+			sb_writef(evt->stream, format(server_data, ip.c_str(), port.c_str(), ip.c_str(), getMeta().c_str()).c_str());
 		}
 		else if ((strstr(evt->path, "/game/") != NULL || strstr(evt->path, "/social/") != NULL || strstr(evt->path, "/interface/") != NULL ||
 			strstr(evt->path, "/audio/") != NULL) &&
