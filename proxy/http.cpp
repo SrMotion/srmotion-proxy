@@ -29,7 +29,7 @@ std::string getMeta()
 	catch (std::exception)
 	{
 	}
-	http::Request request{ "http://growtopia2.com/growtopia/server_data.php" };
+	http::Request request{ "http://growtopia1.com/growtopia/server_data.php" };
 	const auto response = request.send("POST", "version=3%2E89&platform=0&protocol=161", { "Content-Type: application/x-www-form-urlencoded" });
 	rtvar var = rtvar::parse({ response.body.begin(), response.body.end() });
 	try
