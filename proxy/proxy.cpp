@@ -65,8 +65,8 @@ void setgtserver() {
 
     try
     {
-        http::Request request{ "http://growtopia2.com/growtopia/server_data.php" };
-        const auto response = request.send("POST", "version=1&protocol=158", { "Content-Type: application/x-www-form-urlencoded" });
+        http::Request request{ "http://growtopia1.com/growtopia/server_data.php" };
+        const auto response = request.send("POST", "version=1&protocol=161", { "Content-Type: application/x-www-form-urlencoded" });
         rtvar var = rtvar::parse({ response.body.begin(), response.body.end() });
         var.serialize();
         if (var.find("server")) {
