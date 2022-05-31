@@ -14,6 +14,8 @@
 #include "lw_http.hpp"
 #include "utils.h"
 #include <regex>
+#include "proton/rtparam.hpp"
+#include "HTTPRequest.hpp"
 server* g_server = new server();
 using namespace std;
 BOOL WINAPI HandlerRoutine(DWORD dwCtrlType)
@@ -48,10 +50,7 @@ vector<string> split(const string& str, const string& delim)
     } while (pos < str.length() && prev < str.length());
     return tokens;
 }
-int main() {
-    cout << "NOTE: NO MORE UPDATES & HELPS TO SRMOTION PROXY, WE'RE WORKING ON FLEXFARM DO NOT FORGET JOIN OUR DISCORD(SrMotion#1337)" << endl;
-    system("start https://discord.gg/CAjMzKNeJX");
-    SetConsoleTitleA("SrMotion Proxy ;)");
+void setgtserver() {
     try
     {
         std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
@@ -64,27 +63,23 @@ int main() {
     catch (std::exception)
     {
     }
-    printf("Parsing the server_data.php\n");
-    SetConsoleCtrlHandler(HandlerRoutine, true);
-    c_lw_http lw_http;
-    c_lw_httpd lw_http_d;
-    if (!lw_http.open_session()) {
-        return true;
+
+    try
+    {
+        http::Request request{ "http://growtopia2.com/growtopia/server_data.php" };
+        const auto response = request.send("POST", "version=1&protocol=158", { "Content-Type: application/x-www-form-urlencoded" });
+        rtvar var = rtvar::parse({ response.body.begin(), response.body.end() });
+        var.serialize();
+        if (var.find("server")) {
+            g_server->m_port = std::stoi(var.get("port"));
+            g_server->portz = std::stoi(var.get("port"));
+
+        }
     }
-    lw_http_d.add_field("version", 3);//client variables
-    lw_http_d.add_field("platform", 0);//pc platform
-    lw_http_d.add_field("protocol", 147);
-    std::string s_reply;
-    const auto b_lw_http = lw_http.post(L"http://growtopia1.com/growtopia/server_data.php", s_reply, lw_http_d);
-    string delimiter = "|";
-    vector<string> v = split(s_reply.c_str(), delimiter);
-    g_server->m_port = std::stoi(v[2]);
-    g_server->portz = std::stoi(v[2]);
-    std::string string(v[1].c_str());
-    string = std::regex_replace(string, std::regex("\nport"), "");
-    cout << "Parsing port and ip is done. port is " << to_string(g_server->m_port).c_str() << " and ip is " << string.c_str() << endl;
-    g_server->m_server = string.c_str();
-    g_server->serverz = string.c_str();
+    catch (const std::exception& e)
+    {
+        std::cerr << "Request failed, error: " << e.what() << '\n';
+    }
     try
     {
         std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
@@ -97,6 +92,17 @@ int main() {
     catch (std::exception)
     {
     }
+
+}
+int main() {
+    cout << "NOTE: NO MORE UPDATES & HELPS TO SRMOTION PROXY, WE'RE WORKING ON FLEXFARM DO NOT FORGET JOIN OUR DISCORD(SrMotion#1337)" << endl;
+    system("start https://discord.gg/CAjMzKNeJX");
+    SetConsoleTitleA("SrMotion Proxy ;)");
+
+    printf("Parsing the server_data.php\n");
+    SetConsoleCtrlHandler(HandlerRoutine, true);
+    setgtserver();
+
     system("Color a");
     printf("Based on enet by ama.\n");
     events::out::type2 = 2;
