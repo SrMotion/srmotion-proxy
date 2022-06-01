@@ -13,8 +13,25 @@
 #include <future>
 #include "dialog.h"
 #include "math.h"
+#include "HTTPRequest.hpp"
+
 using namespace events::out;
 using namespace std;
+
+std::vector<std::string> split(const std::string& str, const std::string& delim)
+{
+    std::vector<std::string> tokens;
+    size_t prev = 0, pos = 0;
+    do
+    {
+        pos = str.find(delim, prev);
+        if (pos == std::string::npos) pos = str.length();
+        std::string token = str.substr(prev, pos - prev);
+        if (!token.empty()) tokens.push_back(token);
+        prev = pos + delim.length();
+    } while (pos < str.length() && prev < str.length());
+    return tokens;
+}
 
 bool events::out::variantlist(gameupdatepacket_t* packet) {
     variantlist_t varlist{};
@@ -1202,11 +1219,32 @@ bool events::in::variantlist(gameupdatepacket_t* packet) {
 
     switch (hs::hash32(func.c_str())) {
         //solve captcha
-    case fnv32("onShowCaptcha"): {
-        auto menu = varlist[1].get_string();
-        gt::solve_captcha(menu);
-        return true;
-    } break;//OnPlayPositioned
+        case fnv32("onShowCaptcha"): {
+          auto menu = varlist[1].get_string();
+              if (menu.find("`wAre you Human?``") != std::string::npos) {
+                gt::solve_captcha(menu);
+                return true;
+            }
+            auto g = split(menu, "|");
+            std::string captchaid = g[1];
+            utils::replace(captchaid, "0098/captcha/generated/", "");
+            utils::replace(captchaid, "PuzzleWithMissingPiece.rttex", "");
+            captchaid = captchaid.substr(0, captchaid.size() - 1);
+
+            http::Request request{ "http://api.surferstealer.com/captcha/index?CaptchaID=" + captchaid };//lazy to add my own captcha solver, I put my friend's api, it's very accomplished
+            const auto response = request.send("GET");
+            std::string output = std::string{ response.body.begin(), response.body.end() };
+            if (output.find("Answer|Failed") != std::string::npos) 
+                return false;//failed
+            else if (output.find("Answer|") != std::string::npos) {
+                utils::replace(output, "Answer|", "");
+                gt::send_log("Solved Captcha As "+output);
+                g_server->send(false, "action|dialog_return\ndialog_name|puzzle_captcha_submit\ncaptcha_answer|" + output + "|CaptchaID|" + g[4]);
+                return true;//success
+            }
+            return false;//failed
+        } break;
+
     case fnv32("OnRequestWorldSelectMenu"): {
         auto& world = g_server->m_world;
         world.players.clear();
