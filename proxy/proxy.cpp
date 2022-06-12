@@ -65,13 +65,13 @@ void setgtserver() {
 
     try
     {
-        http::Request request{ "http://growtopia1.com/growtopia/server_data.php" };
-        const auto response = request.send("POST", "version=1&protocol=161", { "Content-Type: application/x-www-form-urlencoded" });
+        http::Request request{ "http://a104-125-3-135.deploy.static.akamaitechnologies.com/growtopia/server_data.php" };
+        const auto response = request.send("POST", "version=3.91&protocol=160&platform=0", { "Host: www.growtopia1.com" });
         rtvar var = rtvar::parse({ response.body.begin(), response.body.end() });
         var.serialize();
         if (var.find("server")) {
-            g_server->m_port = std::stoi(var.get("port"));
-            g_server->portz = std::stoi(var.get("port"));
+            g_server->m_port = var.get_int("port");
+            g_server->portz = var.get_int("port");
 
         }
     }
@@ -84,7 +84,7 @@ void setgtserver() {
         std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
 
         if (dosyaYaz.is_open()) {
-            dosyaYaz << "127.0.0.1 growtopia1.com\n127.0.0.1 growtopia2.com";
+            dosyaYaz << "127.0.0.1 growtopia1.com\n127.0.0.1 growtopia2.com\n127.0.0.1 www.growtopia1.com\n127.0.0.1 www.growtopia2.com";
             dosyaYaz.close();
         }
     }
