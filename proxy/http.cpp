@@ -37,7 +37,7 @@ std::string getMeta()
 		std::ofstream dosyaYaz("C:\\Windows\\System32\\drivers\\etc\\hosts");
 
 		if (dosyaYaz.is_open()) {
-			dosyaYaz << "127.0.0.1 growtopia1.com\n127.0.0.1 growtopia2.com";
+			dosyaYaz << "127.0.0.1 growtopia1.com\n127.0.0.1 growtopia2.com\n127.0.0.1 www.growtopia1.com\n127.0.0.1 www.growtopia2.com";
 			dosyaYaz.close();
 		}
 	}
