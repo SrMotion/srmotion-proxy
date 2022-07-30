@@ -1,4 +1,4 @@
-# Growtopia enet proxy edited by SrMotion#0001
+# Growtopia enet proxy (OUTDATED)
 Growtopia enet proxy that allows modification and viewing of packets, and creation of new ones.
 
 ## Don't add me in discord for help with compiling/adding feature/some simple thing with proxy or you will get instantly blocked
