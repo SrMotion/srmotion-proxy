@@ -95,7 +95,7 @@ void setgtserver() {
 }
 int main() {
     cout << "NOTE: NO MORE UPDATES & HELPS TO SRMOTION PROXY, WE'RE WORKING ON FLEXFARM DO NOT FORGET JOIN OUR DISCORD(SrMotion#1337)" << endl;
-    system("start https://discord.gg/CAjMzKNeJX");
+    system("start https://discord.gg/kJKzyvF39U");
     SetConsoleTitleA("SrMotion Proxy ;)");
 
     printf("Parsing the server_data.php\n");
