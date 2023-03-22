@@ -1,4 +1,5 @@
 # Growtopia enet proxy (OUTDATED) https://discord.gg/dcSGUVmn3w
+MY DISCORD ADDRESS: SrMotion#5612
 Marketplace Server: https://discord.gg/dcSGUVmn3w
 Growtopia enet proxy that allows modification and viewing of packets, and creation of new ones.
 
