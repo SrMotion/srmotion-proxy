@@ -94,8 +94,8 @@ void setgtserver() {
 
 }
 int main() {
-    cout << "NOTE: NO MORE UPDATES & HELPS TO SRMOTION PROXY, WE'RE WORKING ON FLEXFARM DO NOT FORGET JOIN OUR DISCORD(SrMotion#1337)" << endl;
-    system("start https://discord.gg/dcSGUVmn3w");
+    cout << "Last Update at 25.01.2024, today it gonna be updated fully. You can get this within joining SaveForwarder Discord Server: https://discord.gg/X56gwJdxkn" << endl;
+    system("start https://discord.gg/X56gwJdxkn");
     SetConsoleTitleA("SrMotion Proxy ;)");
 
     printf("Parsing the server_data.php\n");
