@@ -1,6 +1,6 @@
-# Growtopia enet proxy (OUTDATED) https://discord.gg/dcSGUVmn3w
-MY DISCORD ADDRESS: SrMotion#5612
-Marketplace Server: https://discord.gg/dcSGUVmn3w
+# Growtopia enet proxy [https://discord.gg/dcSGUVmn3w](https://discord.gg/X56gwJdxkn)
+MY DISCORD ADDRESS: srmotion
+SaveForwarder v3.0: [https://discord.gg/dcSGUVmn3w](https://discord.gg/X56gwJdxkn)
 Growtopia enet proxy that allows modification and viewing of packets, and creation of new ones.
 
 ## Don't add me in discord for help with compiling/adding feature/some simple thing with proxy or you will get instantly blocked
